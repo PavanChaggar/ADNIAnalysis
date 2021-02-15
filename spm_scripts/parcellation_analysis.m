@@ -1,24 +1,24 @@
 %% Parcellation Analysis
 %Uses SPM to import the Lausanne 2018 MNI parcellation, create regional
 %masks and compute mean beta coefficients from an SPM GLM analysis for
-%region 
+%region
 
-%% Set directories
+%% USER SPECIFY  ---------------------------------------------------------------
 % Set directory to mbmgroup-refs
-working_directory = '/Volumes/Pavan_SSD/Connectome_atrophy/Development/mbmgroup-refs/';
+parcellation_file = '/Volumes/Pavan_SSD/Connectome_atrophy/Development/mbmgroup-refs/Data/mni_parcellations/mni_template-L2018_desc-scale1_atlas.nii';
 
-% Set input directory 
+% Set input directory
 input_directory = '/Users/pavanchaggar/Documents/ADNI/';
 
-% Set output directory 
+% Set output directory
 output_directory = [input_directory, 'regional_masks/'];
+
+%% PROCESSING (DO NOT NEED TO CHANGE)  -----------------------------------------
 if ~exist(output_directory, 'dir')
     mkdir(output_directory)
 end
-% Get path to MNI parcellation
-parcellation_file = [working_directory, 'Data/mni_parcellations/mni_template-L2018_desc-scale1_atlas.nii'];
 
-% Beta .nii image path 
+% Beta .nii image path
 beta_image_path = [input_directory, 'beta_0001.nii'];
 
 %% Create masks and get mean Beta coefficients
