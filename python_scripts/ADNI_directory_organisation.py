@@ -1,7 +1,18 @@
 import os, fnmatch
 import pandas as pd
 
+# USER EDIT:
 
+# set path to download directory location
+download_dir = '/Users/pavanchaggar/Downloads/ADNI/'
+
+# set path to ADNI data csv file
+subject_csv = '/Users/pavanchaggar/Downloads/MRI_6_01_2020.csv'
+
+# set target output path
+target_file_path = '/Users/pavanchaggar/Documents/ADNI/'
+
+# PROCESSIGN
 def find(extension, path):
     """Find files with a particular extension in a nested file directory
 
@@ -51,8 +62,5 @@ def organise_directory(download_dir, subject_csv, target_file_path):
 
         os.rename(image_path, new_image_path)
 
-download_dir = '/Users/pavanchaggar/Downloads/ADNI/'
-subject_csv = '/Users/pavanchaggar/Downloads/MRI_6_01_2020.csv'
-target_file_path = '/Users/pavanchaggar/Documents/ADNI/'
 
 organise_directory(download_dir=download_dir, subject_csv=subject_csv,target_file_path=target_file_path)
