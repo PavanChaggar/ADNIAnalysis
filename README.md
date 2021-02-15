@@ -1,5 +1,5 @@
-# mbmgroup-refs
-Documentation and example data for the mathematical brain modelling group software and pipelines
+# Pipeline for ADNI analysis
+Documentation and example data for the mathematical brain modelling group software and pipelines for the analysis of ADNI brain imaging data. 
 
 The software included in this repository is for the analysis of brain ADNI MRI and PET data.
 The pipeline starts with an input of raw MRI and PEt images and transforms them to
