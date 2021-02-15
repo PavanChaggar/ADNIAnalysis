@@ -6,23 +6,33 @@
 % 4. Output Contrast results
 %-----------------------------------------------------------------------
 %-----------------------------------------------------------------------
-
-%% Create Subject List
 clear all
 spm('Defaults','PET')
+
+%% USER SPECIFY  ---------------------------------------------------------------
 % path to ADNI directory
-
-group = 'tauPET';
-
 root_dir = '/Volumes/Pavan_SSD/Connectome_atrophy/Data/LMCI/';
-stat_dir = strcat(root_dir, group, '_stats/');
 
+modality = 'tauPET';
 
-% path to ADNI csv file containing subject information
+group1_csv_name = 'LMCI_MRImatched_ABTAUPET_6_14_2020.csv'
+group2_csv_name = 'CN_PETmatched_MRI_6_14_2020.csv'
 
-csv_path = strcat(stat_dir, 'CN_LMCI.csv');
+% Group labels
+group1_label = 'CN'
+group2_label = 'LMCI'
 
-csv = readtable(csv_path);
+%% PROCESSING (DO NOT NEED TO CHANGE)  -----------------------------------------
+
+% stats directory
+stat_dir = strcat(root_dir, modality, '_stats/');
+
+group1_csv_path = strcat(data_dir, group1_csv_name);
+group2_csv_path = strcat(data_dir, group2_csv_name);
+
+group1_csv = readtable(group1_csv_path);
+group2_csv = readtable(group2_csv_path);
+csv = [group1_csv; group2_csv]
 
 % get subject IDs and groups
 subject_ids = csv.Subject;
@@ -30,17 +40,14 @@ subject_ids = csv.Subject;
 subject_groups = csv.Group;
 
 % make path string structure
-group1 = strcat(root_dir, subject_groups, '/', group, '/', subject_groups, '_', subject_ids, '/', 'ss_suvr_', subject_ids, '.nii');
-
-group2 = strcat(root_dir, subject_groups, '/', group, '/', subject_groups, '_', subject_ids, '/', 'ss_suvr_', subject_ids, '.nii');
+subjects = strcat(root_dir, subject_groups, '/', group, '/', subject_groups, '_', subject_ids, '/', 'ss_suvr_', subject_ids, '.nii');
 
 % create masks for groups and edit group arrays
-group1_mask = string(csv.Group) == "CN";
+group1_mask = string(csv.Group) == group1_label;
+group2_mask = string(csv.Group) == group2_label;
 
-group2_mask = string(csv.Group) == "LMCI";
-
-group1 = group1(group1_mask);
-group2 = group2(group2_mask);
+group1 = subjects(group1_mask);
+group2 = subjects(group2_mask);
 
 
 tissue_vols_path = strcat(root_dir, 'tissue_vols.csv');

@@ -24,9 +24,6 @@ Group2_label = 'CN'
 group1_csv_path = strcat(data_dir, group1_csv_name);
 group2_csv_path = strcat(data_dir, group2_csv_name);
 
-
-%% PROCESSING (DO NOT NEED TO CHANGE)  -----------------------------------------
-
 group1_csv = readtable(group1_csv_path);
 group2_csv = readtable(group2_csv_path);
 csv = [group1_csv; group2_csv];
@@ -37,15 +34,14 @@ subject_ids = csv.Subject;
 subject_groups = csv.Group;
 
 % make path string structure
-group1 = strcat(data_dir, subject_groups, '_', subject_ids, '/', 'smwc1', subject_ids, '.nii');
-group2 = strcat(data_dir, subject_groups, '_', subject_ids, '/', 'smwc1', subject_ids, '.nii');
+subjects = strcat(data_dir, subject_groups, '_', subject_ids, '/', 'smwc1', subject_ids, '.nii');
 
 % create masks for groups and edit group arrays
 group1_mask = string(csv.Group) == Group1_label;
 group2_mask = string(csv.Group) == Group2_label;
 
-group1 = group1(group1_mask);
-group2 = group2(group2_mask);
+group1 = subjects(group1_mask);
+group2 = subjects(group2_mask);
 
 % Load tissue volumes
 tissue_vol_output = strcat(data_dir, 'tissue_vols.csv');
