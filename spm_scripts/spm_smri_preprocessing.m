@@ -1,27 +1,28 @@
-%% SPM SMRI Processing ------------------------------------------------------
+%% SPM SMRI Processing ---------------------------------------------------------
 % SPM processing pipeline performing:
 % 1. Segmentation
 % 2. Create Dartel Template
-% 3. Normalise to MNI space 
+% 3. Normalise to MNI space
 % 4. Compute tissue volumes
-%-----------------------------------------------------------------------
-%-----------------------------------------------------------------------
-clear all 
-%% Create Subject List
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+
+clear all
+
+%% USER SPECIFY  ---------------------------------------------------------------
+
 % path to ADNI directory
 data_dir = '/home/sabs-r3/Documents/atrophy_analysis/Data/LMCI_MRI/';
 
 % path to ADNI csv file containing subject information
-group1_csv_path = '/home/sabs-r3/Documents/atrophy_analysis/Data/LMCI_MRI/LMCI_MRImatched_ABTAUPET_6_14_2020.csv';
+group1_csv_path = strcat(data_dir,'LMCI_MRI/LMCI_MRImatched_ABTAUPET_6_14_2020.csv');
+group2_csv_path = strcat(data_dir, 'CN_PETmatched_MRI_6_14_2020.csv');
+
+%% PROCESSING (DO NOT NEED TO CHANGE)  -----------------------------------------
+
 group1_csv = readtable(group1_csv_path);
-
-group2_csv_path = '/home/sabs-r3/Documents/atrophy_analysis/Data/LMCI_MRI/CN_PETmatched_MRI_6_14_2020.csv';
 group2_csv = readtable(group2_csv_path);
-
 all_csv = [group1_csv; group2_csv];
-
-% output path for tissue volumes
-tissue_vol_output = '/home/sabs-r3/Documents/atrophy_analysis/Data/LMCI_MRI/tissue_vols.csv';
 
 subject_ids = all_csv.('Subject');
 
@@ -34,6 +35,8 @@ mat_files = strcat(data_dir, subject_groups, '_', subject_ids, '/', subject_ids,
 
 rc1 = strcat(data_dir, subject_groups, '_', subject_ids, '/', 'rc1', subject_ids, '.nii');
 rc2 = strcat(data_dir, subject_groups, '_', subject_ids, '/', 'rc2', subject_ids, '.nii');
+
+tissue_vol_output = strcat(data_dir, 'tissue_vols.csv');
 
 DARTEL_template = strcat(data_dir, subject_groups(1), '_', subject_ids(1), '/', 'Template_6.nii');
 
