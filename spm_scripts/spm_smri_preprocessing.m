@@ -10,15 +10,18 @@
 clear all
 
 %% USER SPECIFY  ---------------------------------------------------------------
-
 % path to ADNI directory
 data_dir = '/home/sabs-r3/Documents/atrophy_analysis/Data/LMCI_MRI/';
 
-% path to ADNI csv file containing subject information
-group1_csv_path = strcat(data_dir,'LMCI_MRI/LMCI_MRImatched_ABTAUPET_6_14_2020.csv');
-group2_csv_path = strcat(data_dir, 'CN_PETmatched_MRI_6_14_2020.csv');
+% ADNI csv file names
+
+group1_csv_name = 'LMCI_MRImatched_ABTAUPET_6_14_2020.csv'
+group2_csv_name = 'CN_PETmatched_MRI_6_14_2020.csv'
 
 %% PROCESSING (DO NOT NEED TO CHANGE)  -----------------------------------------
+
+group1_csv_path = strcat(data_dir, group1_csv_name);
+group2_csv_path = strcat(data_dir, group2_csv_name);
 
 group1_csv = readtable(group1_csv_path);
 group2_csv = readtable(group2_csv_path);
