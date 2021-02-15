@@ -3,26 +3,25 @@
 % 1. Registration to mni space
 %-----------------------------------------------------------------------
 %-----------------------------------------------------------------------
-clear all 
+clear all
+
+%% USER SPECIFY  ---------------------------------------------------------------
 % path to ADNI directory
 data_dir = '/home/sabs-r3/Documents/AD/CN/';
 
 % path to ADNI csv file containing subject information
-pet_csv_path = strcat(data_dir, 'PET/CN_MRImatched_PET_6_16_2020.csv');
+pet_csv_name = 'PET/CN_MRImatched_PET_6_16_2020.csv';
+mri_csv_name = 'MRI/CN_PETmatched_MRI_6_14_2020.csv';
 
-% output path for tissue volumes
+%% PROCESSING (DO NOT NEED TO CHANGE)  -----------------------------------------
+pet_csv_path = strcat(data_dir, pet_csv_name);
+mri_csv_path = strcat(data_dir, mri_csv_name);
+
 pet_csv = readtable(pet_csv_path);
-
 subject_ids = pet_csv.('Subject');
-
 pet_group = pet_csv.('Group');
 
-%MRI path 
-mri_csv_path = strcat(data_dir, 'MRI/CN_PETmatched_MRI_6_14_2020.csv');
-
-% output path for tissue volumes
 mri_csv = readtable(mri_csv_path);
-
 mri_group = pet_csv.('Group');
 
 % list containing paths to subject nii images
