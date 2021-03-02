@@ -13,6 +13,7 @@ clear all
 % path to ADNI directory
 data_dir = '/home/sabs-r3/Documents/atrophy_analysis/Data/LMCI_MRI/';
 
+% path to SPM directory
 spm_path = '/home/sabs-r3/Documents/MATLAB/spm12'
 
 % ADNI csv file names
