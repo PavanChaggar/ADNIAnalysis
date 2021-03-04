@@ -11,6 +11,33 @@ You will need to clone the repo before being able to use it.
 
 `git clone https://github.com/PavanChaggar/ADNIAnalysis.git`
 
+and install the dependencies. At present these include the MATLAB package SPM and the python package pandas. To install these, follow these instructions. 
+
+#### SPM
+
+SPM is a MATLAB toolbox and therefore requires MATLAB to run! To install MATLAB, see the MathWork [website](https://uk.mathworks.com/products/get-matlab.html?s_tid=gn_getml) for the appropriate installation. Note, university students can often access this through their institutions. 
+
+To run SPM, you will need to download the SPM package, which can be found on the SPM [website](https://www.fil.ion.ucl.ac.uk/spm/software/spm12/). 
+
+Once this is done, you can run SPM by opening MATLAB and running the following on the command line: \
+`addpath('path/to/SPM)`\
+`savepath`
+
+#### Python
+
+It is advise to set up a virtual environment for a particular python project. This will keep packages downloaded for this project seperate to your global python environment. To do this, run the following commands. 
+
+First, from the terminal `cd` into the cloned directory, i.e. ADNIAnalysis, once there run: 
+`python3 -m venv env` 
+
+This will create a directory called `env` which contains a local python configuration. To activate this, run: 
+`source env/bin/activate`
+
+This will activate the python version you just created. Next, you will need to install `pandas`, which can be done using: 
+`pip install pandas` 
+
+This completes the setting up process. Next is the step by step guide on how to run the pipeline.
+
 ## Step-by-Step
 
 ### Organising data
@@ -34,7 +61,7 @@ subject_csv = '/Users/pavanchaggar/Downloads/MRI_6_01_2020.csv'
 target_file_path = '/Users/pavanchaggar/Documents/ADNI/'
 ```
 
-Once this has been completed, you can run the script by
+Once this has been completed, you can run the script by (note that you will need to have your python environment activated with `pandas` installed): 
 
 `python3 ADNI_directory_organisation.py`
 
